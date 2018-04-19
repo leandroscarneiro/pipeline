@@ -1,22 +1,22 @@
-node 'centos3'   {
+node 'slave', 'slave1'   {
 
 #========================= FIX ME =====================================
-  host { 'gitlab.lan':
+  host { 'gitlab.libvirt':
     ensure       => 'present',
     host_aliases => ['gitlab', 'centos1'],
-    ip           => '192.168.2.121'
+    ip           => '192.168.122.100'
   }
 
-  host { 'jenkins.lan':
+  host { 'jenkins.libvirt':
     ensure       => 'present',
     host_aliases => ['jenkins', 'centos2'],
-    ip           => '192.168.2.151'
+    ip           => '192.168.122.102'
   }
 
-  host { 'slave1.lan':
+  host { 'slave1.libvirt':
     ensure       => 'present',
     host_aliases => ['slave1', 'centos3'],
-    ip           => '192.168.2.123'
+    ip           => '192.168.122.103'
   }
 #========================= FIX ME =====================================
 

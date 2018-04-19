@@ -1,22 +1,24 @@
-node 'centos1'   {
+node 'gitlab'   {
 
-  host { 'gitlab.lan':
+ #========================= FIX ME =====================================
+  host { 'gitlab.libvirt':
     ensure       => 'present',
     host_aliases => ['gitlab', 'centos1'],
-    ip           => '192.168.2.121'
+    ip           => '192.168.122.100'
   }
 
-  host { 'jenkins.lan':
+  host { 'jenkins.libvirt':
     ensure       => 'present',
     host_aliases => ['jenkins', 'centos2'],
-    ip           => '192.168.2.151'
+    ip           => '192.168.122.102'
   }
 
-  host { 'slave1.lan':
+  host { 'slave1.libvirt':
     ensure       => 'present',
     host_aliases => ['slave1', 'centos3'],
-    ip           => '192.168.2.123'
+    ip           => '192.168.122.103'
   }
+ #========================= FIX ME =====================================
 
 
   file { [ '/data' , '/data/docker', '/data/gitlab', '/data/gitlab/config', '/data/gitlab/logs', '/data/gitlab/data' ] :
@@ -39,7 +41,6 @@ node 'centos1'   {
     env      => [ 'GITLAB_OMNIBUS_CONFIG=gitlab_rails[\'gitlab_shell_ssh_port\'] = 2222; external_url \'http://gitlab\'; ' ],
     volumes  => [ '/data/gitlab/config:/etc/gitlab', '/data/gitlab/logs:/var/log/gitlab', '/data/gitlab/data:/var/opt/gitlab' ],
     ports    => ['80:80', '443:443', '2222:22'],
-    #hostname => 'gitlab.lan',
   }
 
 
