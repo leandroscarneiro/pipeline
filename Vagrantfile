@@ -25,6 +25,7 @@ Vagrant.configure("2") do |config|
           else
             node.vm.network "public_network", :dev => "br0", :bridge => "br0", :use_dhcp_assigned_default_route => "true", :mac => "52:54:00:FF:FF:" + machine[:mac] #MAC fixo para receber mesmo ip do dhcp
           end
+          node.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, nfs_version: 3
           node.vm.box = machine[:box]
           node.hostsupdater.aliases = [ machine[:hostname] ]
           node.vm.hostname = machine[:hostname] + ".libvirt"

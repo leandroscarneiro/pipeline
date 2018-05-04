@@ -18,3 +18,7 @@ case $::facts['os']['family'] {
     notify { "$::facts['os']['family'] nao suportado": }
   }
 }
+
+package { 'vagrant': 
+  ensure => 'present',
+}
